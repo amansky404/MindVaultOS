@@ -10,7 +10,7 @@ export class MasterKeyDerivation {
   private static readonly KEY_LENGTH = 32;
   
   // Argon2id parameters (OWASP recommended)
-  private static readonly MEMORY_COST = 65536; // 64 MB
+  private static readonly MEMORY_COST = 65536; // 65536 KiB = 64 MiB (Argon2 memory cost)
   private static readonly TIME_COST = 3;
   private static readonly PARALLELISM = 4;
 

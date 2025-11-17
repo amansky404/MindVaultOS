@@ -5,7 +5,7 @@ import { Key, Search, Plus, Eye, EyeOff, Copy, Edit, Trash2 } from 'lucide-react
 import Link from 'next/link';
 
 export default function PasswordsPage() {
-  const [passwords, setPasswords] = useState<any[]>([]);
+  const [passwords] = useState<any[]>([]);
   const [showPassword, setShowPassword] = useState<{ [key: string]: boolean }>({});
   const [searchQuery, setSearchQuery] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);

@@ -184,7 +184,7 @@
 
   // Add indicator icon on login forms
   function addAutoFillIndicator() {
-    const { usernameField, passwordField } = findLoginFields();
+    const { passwordField } = findLoginFields();
     
     if (passwordField && !passwordField.dataset.mindvaultIndicator) {
       passwordField.dataset.mindvaultIndicator = 'true';

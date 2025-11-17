@@ -5,7 +5,7 @@ import { FileText, Search, Plus, Edit, Trash2, Tag } from 'lucide-react';
 import Link from 'next/link';
 
 export default function NotesPage() {
-  const [notes, setNotes] = useState<any[]>([]);
+  const [notes] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
 

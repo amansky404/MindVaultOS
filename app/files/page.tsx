@@ -5,7 +5,7 @@ import { FolderLock, Search, Plus, Download, Trash2, File } from 'lucide-react';
 import Link from 'next/link';
 
 export default function FilesPage() {
-  const [files, setFiles] = useState<any[]>([]);
+  const [files] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   const formatFileSize = (bytes: number) => {

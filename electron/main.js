@@ -1,7 +1,6 @@
 const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
 const path = require('path');
 const isDev = require('electron-is-dev');
-const Store = require('electron-store');
 
 // Import modules (will be converted to require in production)
 let db = null;
@@ -10,8 +9,6 @@ let keystrokeMemory = null;
 let clipboardHistory = null;
 let terminalHistory = null;
 let browserHistory = null;
-
-const store = new Store();
 
 let mainWindow = null;
 

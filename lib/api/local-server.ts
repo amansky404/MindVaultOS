@@ -157,7 +157,7 @@ export class LocalAPIServer {
           return res.status(403).json({ error: 'Database is locked' });
         }
 
-        const { command, context } = req.body;
+        const { command } = req.body;
         
         // Detect credential type from command
         let searchQuery = '';
