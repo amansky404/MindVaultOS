@@ -20,20 +20,20 @@ export default function PasswordsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 p-6">
+    <div className="min-h-screen bg-black p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <Link href="/" className="text-blue-400 hover:text-blue-300 text-sm mb-2 block">
+          <Link href="/" className="terminal-text hover:text-green-300 text-sm mb-2 block">
             ← Back to Home
           </Link>
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-4xl font-bold mb-2">Password Manager</h1>
-              <p className="text-slate-400">Securely store and manage your passwords</p>
+              <h1 className="text-4xl font-bold mb-2 terminal-text animate-glow-pulse font-mono">Password Manager</h1>
+              <p className="text-green-400">Securely store and manage your passwords</p>
             </div>
             <button
               onClick={() => setShowAddModal(true)}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors flex items-center"
+              className="px-6 py-3 bg-black border border-green-500 hover:bg-green-900/30 terminal-text  font-medium transition-colors flex items-center"
             >
               <Plus className="w-5 h-5 mr-2" />
               Add Password
@@ -42,19 +42,19 @@ export default function PasswordsPage() {
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-slate-800 rounded-xl border border-slate-700 p-4 mb-6">
+        <div className="bg-black border border-green-500 terminal-glow p-4 mb-6">
           <div className="flex space-x-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-400 w-5 h-5" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search passwords..."
-                className="w-full pl-12 pr-4 py-2 bg-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full pl-12 pr-4 py-2 bg-black border border-green-700  focus:ring-2 focus:ring-blue-500 outline-none"
               />
             </div>
-            <select className="px-4 py-2 bg-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+            <select className="px-4 py-2 bg-black border border-green-700  focus:ring-2 focus:ring-blue-500 outline-none">
               <option>All Categories</option>
               <option>Work</option>
               <option>Personal</option>
@@ -65,7 +65,7 @@ export default function PasswordsPage() {
         </div>
 
         {/* Password List */}
-        <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
+        <div className="bg-black border border-green-500 terminal-glow p-6">
           <h2 className="text-xl font-bold mb-6">
             {passwords.length} Password{passwords.length !== 1 ? 's' : ''}
           </h2>
@@ -73,10 +73,10 @@ export default function PasswordsPage() {
           {passwords.length === 0 ? (
             <div className="text-center py-12">
               <Key className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-              <p className="text-slate-400 mb-4">No passwords saved yet</p>
+              <p className="text-green-400 mb-4">No passwords saved yet</p>
               <button
                 onClick={() => setShowAddModal(true)}
-                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors inline-flex items-center"
+                className="px-6 py-3 bg-black border border-green-500 hover:bg-green-900/30 terminal-text  font-medium transition-colors inline-flex items-center"
               >
                 <Plus className="w-5 h-5 mr-2" />
                 Add Your First Password
@@ -87,14 +87,14 @@ export default function PasswordsPage() {
               {passwords.map((password) => (
                 <div
                   key={password.id}
-                  className="p-4 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-colors"
+                  className="p-4 bg-black border border-green-700  hover:bg-black border border-green-700 transition-colors"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
                         <h3 className="font-bold text-lg">{password.name}</h3>
                         {password.category && (
-                          <span className="px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs">
+                          <span className="px-2 py-1 bg-blue-500/20 terminal-text rounded text-xs">
                             {password.category}
                           </span>
                         )}
@@ -104,7 +104,7 @@ export default function PasswordsPage() {
                           href={password.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-blue-400 hover:text-blue-300"
+                          className="text-sm terminal-text hover:text-green-300"
                         >
                           {password.url}
                         </a>
@@ -122,9 +122,9 @@ export default function PasswordsPage() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs text-slate-400 mb-1 block">Username</label>
+                      <label className="text-xs text-green-400 mb-1 block">Username</label>
                       <div className="flex items-center space-x-2">
-                        <code className="text-sm bg-slate-800 px-3 py-1 rounded flex-1">
+                        <code className="text-sm bg-black border border-green-500 terminal-glow px-3 py-1 rounded flex-1">
                           {password.username}
                         </code>
                         <button
@@ -137,9 +137,9 @@ export default function PasswordsPage() {
                     </div>
 
                     <div>
-                      <label className="text-xs text-slate-400 mb-1 block">Password</label>
+                      <label className="text-xs text-green-400 mb-1 block">Password</label>
                       <div className="flex items-center space-x-2">
-                        <code className="text-sm bg-slate-800 px-3 py-1 rounded flex-1 font-mono">
+                        <code className="text-sm bg-black border border-green-500 terminal-glow px-3 py-1 rounded flex-1 font-mono">
                           {showPassword[password.id] ? password.password : '••••••••'}
                         </code>
                         <button
@@ -164,13 +164,13 @@ export default function PasswordsPage() {
 
                   {password.notes && (
                     <div className="mt-3 pt-3 border-t border-slate-600">
-                      <p className="text-sm text-slate-400">{password.notes}</p>
+                      <p className="text-sm text-green-400 font-mono">{password.notes}</p>
                     </div>
                   )}
 
                   <div className="mt-3 flex items-center space-x-4 text-xs text-slate-500">
                     {password.autoFill && <span className="text-green-400">✓ AutoFill</span>}
-                    {password.autoSubmit && <span className="text-blue-400">✓ AutoSubmit</span>}
+                    {password.autoSubmit && <span className="terminal-text">✓ AutoSubmit</span>}
                     {password.autoType && <span className="text-purple-400">✓ AutoType</span>}
                   </div>
                 </div>
@@ -182,7 +182,7 @@ export default function PasswordsPage() {
         {/* Add Password Modal (simplified) */}
         {showAddModal && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-slate-800 rounded-xl p-6 max-w-md w-full border border-slate-700">
+            <div className="bg-black border border-green-500 terminal-glow  p-6 max-w-md w-full border border-green-500">
               <h2 className="text-2xl font-bold mb-4">Add Password</h2>
               <form className="space-y-4">
                 <div>
@@ -190,7 +190,7 @@ export default function PasswordsPage() {
                   <input
                     type="text"
                     placeholder="e.g., GitHub"
-                    className="w-full px-4 py-2 bg-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-4 py-2 bg-black border border-green-700  focus:ring-2 focus:ring-blue-500 outline-none"
                   />
                 </div>
                 <div>
@@ -198,7 +198,7 @@ export default function PasswordsPage() {
                   <input
                     type="text"
                     placeholder="username@example.com"
-                    className="w-full px-4 py-2 bg-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-4 py-2 bg-black border border-green-700  focus:ring-2 focus:ring-blue-500 outline-none"
                   />
                 </div>
                 <div>
@@ -206,7 +206,7 @@ export default function PasswordsPage() {
                   <input
                     type="password"
                     placeholder="Enter password"
-                    className="w-full px-4 py-2 bg-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-4 py-2 bg-black border border-green-700  focus:ring-2 focus:ring-blue-500 outline-none"
                   />
                 </div>
                 <div>
@@ -214,20 +214,20 @@ export default function PasswordsPage() {
                   <input
                     type="url"
                     placeholder="https://example.com"
-                    className="w-full px-4 py-2 bg-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-4 py-2 bg-black border border-green-700  focus:ring-2 focus:ring-blue-500 outline-none"
                   />
                 </div>
                 <div className="flex space-x-3 pt-4">
                   <button
                     type="button"
                     onClick={() => setShowAddModal(false)}
-                    className="flex-1 px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors"
+                    className="flex-1 px-4 py-2 bg-black border border-green-700 hover:bg-slate-600  transition-colors"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+                    className="flex-1 px-4 py-2 bg-black border border-green-500 hover:bg-green-900/30 terminal-text  transition-colors"
                   >
                     Save
                   </button>

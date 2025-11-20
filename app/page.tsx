@@ -75,10 +75,12 @@ export default function HomePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+      <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="text-center">
-          <Shield className="w-16 h-16 text-blue-400 mx-auto mb-4 animate-pulse" />
-          <p className="text-xl text-slate-300">Loading MindVault OS...</p>
+          <Shield className="w-16 h-16 text-green-400 mx-auto mb-4 animate-pulse terminal-glow" />
+          <p className="text-xl terminal-text font-mono animate-glow-pulse">
+            <span className="animate-blink">█</span> INITIALIZING_MINDVAULT_OS...
+          </p>
         </div>
       </div>
     );
@@ -86,22 +88,24 @@ export default function HomePage() {
 
   if (!isInitialized) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-        <div className="bg-slate-800 p-8 rounded-2xl shadow-2xl max-w-md w-full border border-slate-700">
+      <div className="min-h-screen flex items-center justify-center bg-black p-6">
+        <div className="bg-black border border-green-500 p-8 shadow-2xl max-w-md w-full terminal-glow">
           <div className="text-center mb-6">
-            <Shield className="w-16 h-16 text-blue-400 mx-auto mb-4" />
-            <h1 className="text-3xl font-bold mb-2">Welcome to MindVault OS</h1>
-            <p className="text-slate-400">Set your master password to begin</p>
+            <Shield className="w-16 h-16 text-green-400 mx-auto mb-4 animate-glow-pulse" />
+            <h1 className="text-3xl font-bold mb-2 terminal-text font-mono">
+              &gt; MINDVAULT_OS
+            </h1>
+            <p className="text-green-400 font-mono text-sm">Initialize master encryption key</p>
           </div>
           
           <form onSubmit={handleInitialize} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Master Password</label>
+              <label className="block text-sm font-medium mb-2 text-green-400 font-mono">MASTER_PASSWORD:</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 bg-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2 bg-black border border-green-700 text-green-400 font-mono focus:outline-none focus:border-green-400 terminal-glow"
                 placeholder="Enter master password"
                 minLength={8}
                 required
@@ -109,12 +113,12 @@ export default function HomePage() {
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-2">Confirm Password</label>
+              <label className="block text-sm font-medium mb-2 text-green-400 font-mono">CONFIRM_PASSWORD:</label>
               <input
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full px-4 py-2 bg-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2 bg-black border border-green-700 text-green-400 font-mono focus:outline-none focus:border-green-400 terminal-glow"
                 placeholder="Confirm master password"
                 minLength={8}
                 required
@@ -123,15 +127,15 @@ export default function HomePage() {
             
             <button
               type="submit"
-              className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
+              className="w-full py-3 bg-black border border-green-500 hover:bg-green-900/30 terminal-text font-medium transition-colors font-mono terminal-glow"
             >
-              Initialize MindVault
+              &gt;&gt; INITIALIZE_VAULT
             </button>
             
-            <p className="text-xs text-slate-400 text-center mt-4">
-              This password will encrypt all your data using AES-256-GCM.
+            <p className="text-xs text-green-700 text-center mt-4 font-mono border border-green-900 p-3">
+              [!] AES-256-GCM ENCRYPTION ENABLED
               <br />
-              <span className="text-yellow-400">Make sure to remember it - it cannot be recovered!</span>
+              <span className="text-yellow-400">[WARNING] PASSWORD_RECOVERY: IMPOSSIBLE</span>
             </p>
           </form>
         </div>
@@ -141,22 +145,24 @@ export default function HomePage() {
 
   if (!isUnlocked) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-        <div className="bg-slate-800 p-8 rounded-2xl shadow-2xl max-w-md w-full border border-slate-700">
+      <div className="min-h-screen flex items-center justify-center bg-black p-6">
+        <div className="bg-black border border-green-500 p-8 shadow-2xl max-w-md w-full terminal-glow">
           <div className="text-center mb-6">
-            <Lock className="w-16 h-16 text-blue-400 mx-auto mb-4" />
-            <h1 className="text-3xl font-bold mb-2">MindVault OS</h1>
-            <p className="text-slate-400">Enter your master password to unlock</p>
+            <Lock className="w-16 h-16 text-green-400 mx-auto mb-4 animate-glow-pulse" />
+            <h1 className="text-3xl font-bold mb-2 terminal-text font-mono">
+              &gt; MINDVAULT_OS
+            </h1>
+            <p className="text-green-400 font-mono text-sm">Enter decryption key to unlock vault</p>
           </div>
           
           <form onSubmit={handleUnlock} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Master Password</label>
+              <label className="block text-sm font-medium mb-2 text-green-400 font-mono">MASTER_PASSWORD:</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 bg-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-2 bg-black border border-green-700 text-green-400 font-mono focus:outline-none focus:border-green-400 terminal-glow"
                 placeholder="Enter master password"
                 required
                 autoFocus
@@ -165,9 +171,9 @@ export default function HomePage() {
             
             <button
               type="submit"
-              className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
+              className="w-full py-3 bg-black border border-green-500 hover:bg-green-900/30 terminal-text font-medium transition-colors font-mono terminal-glow"
             >
-              Unlock
+              &gt;&gt; DECRYPT_AND_UNLOCK
             </button>
           </form>
         </div>
@@ -176,26 +182,26 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div className="min-h-screen bg-black">
       {/* Header */}
-      <header className="bg-slate-800/50 backdrop-blur-lg border-b border-slate-700">
+      <header className="bg-black border-b border-green-500 terminal-glow">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <Shield className="w-8 h-8 text-blue-400" />
-            <h1 className="text-2xl font-bold">MindVault OS</h1>
+            <Shield className="w-8 h-8 text-green-400 animate-glow-pulse" />
+            <h1 className="text-2xl font-bold terminal-text font-mono">&gt; MINDVAULT_OS</h1>
           </div>
           
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-green-400 flex items-center">
-              <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-              Unlocked & Encrypted
+            <span className="text-sm text-green-400 flex items-center font-mono">
+              <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+              [VAULT_UNLOCKED]
             </span>
             <button
               onClick={handleLock}
-              className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-sm font-medium transition-colors flex items-center"
+              className="px-4 py-2 bg-black border border-red-500 hover:bg-red-900/30 text-red-400 text-sm font-medium transition-colors flex items-center font-mono terminal-glow"
             >
               <Lock className="w-4 h-4 mr-2" />
-              Lock
+              LOCK_SYSTEM
             </button>
           </div>
         </div>
@@ -203,106 +209,117 @@ export default function HomePage() {
 
       {/* Main Content */}
       <div className="container mx-auto px-6 py-8">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">Welcome to Your Personal Vault</h2>
-          <p className="text-slate-400">All data is encrypted locally with AES-256-GCM. Nothing leaves your device.</p>
+        <div className="mb-8 terminal-glow bg-black border border-green-500 p-6">
+          <h2 className="text-3xl font-bold mb-2 terminal-text font-mono animate-glow-pulse">
+            &gt;&gt; WELCOME_TO_YOUR_ENCRYPTED_VAULT
+          </h2>
+          <p className="text-green-400 font-mono text-sm">
+            <span className="animate-blink">█</span> AES-256-GCM | LOCAL_ONLY | ZERO_CLOUD_SYNC
+          </p>
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-            <Activity className="w-8 h-8 text-blue-400 mb-2" />
-            <h3 className="text-2xl font-bold">0</h3>
-            <p className="text-sm text-slate-400">Activities Today</p>
+          <div className="bg-black border border-green-500 p-6 terminal-glow">
+            <Activity className="w-8 h-8 text-green-400 mb-2" />
+            <h3 className="text-2xl font-bold terminal-text">0</h3>
+            <p className="text-sm text-green-400 font-mono">ACTIVITIES_TODAY</p>
           </div>
           
-          <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+          <div className="bg-black border border-green-500 p-6 terminal-glow">
             <Clipboard className="w-8 h-8 text-green-400 mb-2" />
-            <h3 className="text-2xl font-bold">0</h3>
-            <p className="text-sm text-slate-400">Clipboard Items</p>
+            <h3 className="text-2xl font-bold terminal-text">0</h3>
+            <p className="text-sm text-green-400 font-mono">CLIPBOARD_ITEMS</p>
           </div>
           
-          <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-            <Terminal className="w-8 h-8 text-purple-400 mb-2" />
-            <h3 className="text-2xl font-bold">0</h3>
-            <p className="text-sm text-slate-400">Terminal Commands</p>
+          <div className="bg-black border border-green-500 p-6 terminal-glow">
+            <Terminal className="w-8 h-8 text-green-400 mb-2" />
+            <h3 className="text-2xl font-bold terminal-text">0</h3>
+            <p className="text-sm text-green-400 font-mono">TERMINAL_COMMANDS</p>
           </div>
           
-          <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-            <Key className="w-8 h-8 text-yellow-400 mb-2" />
-            <h3 className="text-2xl font-bold">0</h3>
-            <p className="text-sm text-slate-400">Saved Passwords</p>
+          <div className="bg-black border border-green-500 p-6 terminal-glow">
+            <Key className="w-8 h-8 text-green-400 mb-2" />
+            <h3 className="text-2xl font-bold terminal-text">0</h3>
+            <p className="text-sm text-green-400 font-mono">SAVED_PASSWORDS</p>
           </div>
         </div>
 
         {/* Module Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Link href="/dashboard" className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-colors group">
-            <Home className="w-12 h-12 text-blue-400 mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-xl font-bold mb-2">Dashboard</h3>
-            <p className="text-slate-400">View your activity summary and timeline</p>
+          <Link href="/dashboard" className="bg-black border border-green-500 p-6 hover:border-green-300 transition-colors group terminal-glow">
+            <Home className="w-12 h-12 text-green-400 mb-4 group-hover:animate-pulse transition-transform" />
+            <h3 className="text-xl font-bold mb-2 terminal-text font-mono">&gt; DASHBOARD</h3>
+            <p className="text-green-400 text-sm font-mono">Activity summary and timeline</p>
           </Link>
 
-          <Link href="/search" className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-colors group">
-            <Search className="w-12 h-12 text-green-400 mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-xl font-bold mb-2">Universal Search</h3>
-            <p className="text-slate-400">Search across all modules instantly</p>
+          <Link href="/search" className="bg-black border border-green-500 p-6 hover:border-green-300 transition-colors group terminal-glow">
+            <Search className="w-12 h-12 text-green-400 mb-4 group-hover:animate-pulse transition-transform" />
+            <h3 className="text-xl font-bold mb-2 terminal-text font-mono">&gt; UNIVERSAL_SEARCH</h3>
+            <p className="text-green-400 text-sm font-mono">Search across all modules</p>
           </Link>
 
-          <Link href="/passwords" className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-colors group">
-            <Key className="w-12 h-12 text-yellow-400 mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-xl font-bold mb-2">Password Manager</h3>
-            <p className="text-slate-400">Secure password storage with AutoFill</p>
+          <Link href="/passwords" className="bg-black border border-green-500 p-6 hover:border-green-300 transition-colors group terminal-glow">
+            <Key className="w-12 h-12 text-green-400 mb-4 group-hover:animate-pulse transition-transform" />
+            <h3 className="text-xl font-bold mb-2 terminal-text font-mono">&gt; PASSWORD_MANAGER</h3>
+            <p className="text-green-400 text-sm font-mono">Secure password storage + AutoFill</p>
           </Link>
 
-          <Link href="/notes" className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-colors group">
-            <FileText className="w-12 h-12 text-purple-400 mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-xl font-bold mb-2">Notes Vault</h3>
-            <p className="text-slate-400">Encrypted note storage</p>
+          <Link href="/notes" className="bg-black border border-green-500 p-6 hover:border-green-300 transition-colors group terminal-glow">
+            <FileText className="w-12 h-12 text-green-400 mb-4 group-hover:animate-pulse transition-transform" />
+            <h3 className="text-xl font-bold mb-2 terminal-text font-mono">&gt; NOTES_VAULT</h3>
+            <p className="text-green-400 text-sm font-mono">Encrypted note storage</p>
           </Link>
 
-          <Link href="/files" className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-colors group">
-            <FolderLock className="w-12 h-12 text-red-400 mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-xl font-bold mb-2">File Vault</h3>
-            <p className="text-slate-400">Secure file storage</p>
+          <Link href="/files" className="bg-black border border-green-500 p-6 hover:border-green-300 transition-colors group terminal-glow">
+            <FolderLock className="w-12 h-12 text-green-400 mb-4 group-hover:animate-pulse transition-transform" />
+            <h3 className="text-xl font-bold mb-2 terminal-text font-mono">&gt; FILE_VAULT</h3>
+            <p className="text-green-400 text-sm font-mono">Secure file storage</p>
           </Link>
 
-          <Link href="/clipboard" className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-colors group">
-            <Clipboard className="w-12 h-12 text-cyan-400 mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-xl font-bold mb-2">Clipboard History</h3>
-            <p className="text-slate-400">View and search clipboard history</p>
+          <Link href="/clipboard" className="bg-black border border-green-500 p-6 hover:border-green-300 transition-colors group terminal-glow">
+            <Clipboard className="w-12 h-12 text-green-400 mb-4 group-hover:animate-pulse transition-transform" />
+            <h3 className="text-xl font-bold mb-2 terminal-text font-mono">&gt; CLIPBOARD_HISTORY</h3>
+            <p className="text-green-400 text-sm font-mono">View and search clipboard</p>
           </Link>
 
-          <Link href="/terminal" className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-colors group">
-            <Terminal className="w-12 h-12 text-orange-400 mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-xl font-bold mb-2">Terminal Logs</h3>
-            <p className="text-slate-400">Command history and outputs</p>
+          <Link href="/terminal" className="bg-black border border-green-500 p-6 hover:border-green-300 transition-colors group terminal-glow">
+            <Terminal className="w-12 h-12 text-green-400 mb-4 group-hover:animate-pulse transition-transform" />
+            <h3 className="text-xl font-bold mb-2 terminal-text font-mono">&gt; TERMINAL_LOGS</h3>
+            <p className="text-green-400 text-sm font-mono">Command history and outputs</p>
           </Link>
 
-          <Link href="/settings" className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-colors group">
-            <Settings className="w-12 h-12 text-slate-400 mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-xl font-bold mb-2">Settings</h3>
-            <p className="text-slate-400">Configure MindVault OS</p>
+          <Link href="/settings" className="bg-black border border-green-500 p-6 hover:border-green-300 transition-colors group terminal-glow">
+            <Settings className="w-12 h-12 text-green-400 mb-4 group-hover:animate-pulse transition-transform" />
+            <h3 className="text-xl font-bold mb-2 terminal-text font-mono">&gt; SETTINGS</h3>
+            <p className="text-green-400 text-sm font-mono">Configure MindVault OS</p>
           </Link>
         </div>
 
         {/* Hotkeys Info */}
-        <div className="mt-8 bg-slate-800 p-6 rounded-xl border border-slate-700">
-          <h3 className="text-lg font-bold mb-4">Global Hotkeys</h3>
+        <div className="mt-8 bg-black border border-green-500 p-6 terminal-glow">
+          <h3 className="text-lg font-bold mb-4 terminal-text font-mono">&gt;&gt; GLOBAL_HOTKEYS</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div className="flex items-center space-x-2">
-              <kbd className="px-2 py-1 bg-slate-700 rounded">Ctrl+Alt+A</kbd>
-              <span className="text-slate-400">Smart AutoFill</span>
+            <div className="flex items-center space-x-2 font-mono">
+              <kbd className="px-2 py-1 bg-black border border-green-700 text-green-400">Ctrl+Alt+A</kbd>
+              <span className="text-green-400">Smart_AutoFill</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <kbd className="px-2 py-1 bg-slate-700 rounded">Ctrl+Alt+S</kbd>
-              <span className="text-slate-400">Universal Search</span>
+            <div className="flex items-center space-x-2 font-mono">
+              <kbd className="px-2 py-1 bg-black border border-green-700 text-green-400">Ctrl+Alt+S</kbd>
+              <span className="text-green-400">Universal_Search</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <kbd className="px-2 py-1 bg-slate-700 rounded">Ctrl+Alt+L</kbd>
-              <span className="text-slate-400">Lock Vault</span>
+            <div className="flex items-center space-x-2 font-mono">
+              <kbd className="px-2 py-1 bg-black border border-green-700 text-green-400">Ctrl+Alt+L</kbd>
+              <span className="text-green-400">Lock_Vault</span>
             </div>
           </div>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-8 text-center">
+          <p className="text-green-700 text-sm font-mono border border-green-900 inline-block px-4 py-2">
+            [SYSTEM_MESSAGE] ALL_DATA_ENCRYPTED | NO_TELEMETRY | LOCAL_STORAGE_ONLY
+          </p>
         </div>
       </div>
     </div>
