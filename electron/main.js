@@ -168,6 +168,70 @@ function setupIPC() {
       return { success: false, error: error.message };
     }
   });
+
+  // Password Manager operations
+  ipcMain.handle('passwords:getAll', async (event, limit, offset) => {
+    try {
+      const { PasswordManager } = require('../lib/modules/password-manager');
+      const passwordManager = new PasswordManager(db);
+      return { success: true, data: passwordManager.getAllPasswords(limit, offset) };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('passwords:add', async (event, data) => {
+    try {
+      const { PasswordManager } = require('../lib/modules/password-manager');
+      const passwordManager = new PasswordManager(db);
+      const password = passwordManager.addPassword(data);
+      return { success: true, data: password };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('passwords:update', async (event, id, data) => {
+    try {
+      const { PasswordManager } = require('../lib/modules/password-manager');
+      const passwordManager = new PasswordManager(db);
+      const password = passwordManager.updatePassword(id, data);
+      return { success: true, data: password };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('passwords:delete', async (event, id) => {
+    try {
+      const { PasswordManager } = require('../lib/modules/password-manager');
+      const passwordManager = new PasswordManager(db);
+      const deleted = passwordManager.deletePassword(id);
+      return { success: true, data: deleted };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('passwords:search', async (event, query, limit) => {
+    try {
+      const { PasswordManager } = require('../lib/modules/password-manager');
+      const passwordManager = new PasswordManager(db);
+      return { success: true, data: passwordManager.searchPasswords(query, limit || 50) };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle('passwords:getByCategory', async (event, category) => {
+    try {
+      const { PasswordManager } = require('../lib/modules/password-manager');
+      const passwordManager = new PasswordManager(db);
+      return { success: true, data: passwordManager.getPasswordsByCategory(category) };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  });
 }
 
 function setupGlobalShortcuts() {

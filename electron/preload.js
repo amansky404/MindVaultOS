@@ -21,6 +21,14 @@ contextBridge.exposeInMainWorld('electronAPI', {
   // Search
   searchUniversal: (query, limit) => ipcRenderer.invoke('search:universal', query, limit),
 
+  // Password Manager operations
+  passwordsGetAll: (limit, offset) => ipcRenderer.invoke('passwords:getAll', limit, offset),
+  passwordsAdd: (data) => ipcRenderer.invoke('passwords:add', data),
+  passwordsUpdate: (id, data) => ipcRenderer.invoke('passwords:update', id, data),
+  passwordsDelete: (id) => ipcRenderer.invoke('passwords:delete', id),
+  passwordsSearch: (query, limit) => ipcRenderer.invoke('passwords:search', query, limit),
+  passwordsGetByCategory: (category) => ipcRenderer.invoke('passwords:getByCategory', category),
+
   // Listen to events
   onShortcutAutofill: (callback) => ipcRenderer.on('shortcut:autofill', callback),
   onShortcutLock: (callback) => ipcRenderer.on('shortcut:lock', callback),
