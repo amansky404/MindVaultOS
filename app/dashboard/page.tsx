@@ -31,64 +31,70 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 p-6">
+    <div className="min-h-screen bg-black p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <Link href="/" className="text-blue-400 hover:text-blue-300 text-sm mb-2 block">
-            ← Back to Home
+        {/* Header */}
+        <div className="mb-8 terminal-glow p-6 bg-black border border-green-500">
+          <Link href="/" className="terminal-text hover:text-green-300 text-sm mb-3 block flex items-center font-mono">
+            <span className="mr-2">←</span> <span className="animate-glow-pulse">[RETURN_TO_MAIN_TERMINAL]</span>
           </Link>
-          <h1 className="text-4xl font-bold mb-2">Activity Dashboard</h1>
-          <p className="text-slate-400">View your recent activity and timeline</p>
+          <h1 className="text-4xl font-bold mb-2 terminal-text animate-glow-pulse font-mono">
+            <Activity className="inline-block w-10 h-10 mr-3" />
+            &gt; ACTIVITY_DASHBOARD.EXE
+          </h1>
+          <p className="text-green-400 font-mono text-sm">
+            <span className="animate-blink">█</span> Real-time activity monitoring and analytics...
+          </p>
         </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-            <div className="flex items-center justify-between mb-4">
-              <Activity className="w-8 h-8 text-blue-400" />
-              <TrendingUp className="w-5 h-5 text-green-400" />
-            </div>
-            <h3 className="text-3xl font-bold mb-1">247</h3>
-            <p className="text-slate-400">Activities Today</p>
-          </div>
-
-          <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-            <div className="flex items-center justify-between mb-4">
-              <Clock className="w-8 h-8 text-purple-400" />
-              <span className="text-xs text-slate-400">Peak: 2-4 PM</span>
-            </div>
-            <h3 className="text-3xl font-bold mb-1">6.2h</h3>
-            <p className="text-slate-400">Active Time</p>
-          </div>
-
-          <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+          <div className="bg-black border border-green-500 p-6 terminal-glow">
             <div className="flex items-center justify-between mb-4">
               <Activity className="w-8 h-8 text-green-400" />
-              <span className="text-xs text-green-400">+12%</span>
+              <TrendingUp className="w-5 h-5 text-green-400 animate-pulse" />
             </div>
-            <h3 className="text-3xl font-bold mb-1">1,547</h3>
-            <p className="text-slate-400">This Week</p>
+            <h3 className="text-3xl font-bold mb-1 terminal-text">247</h3>
+            <p className="text-green-400 font-mono text-sm">ACTIVITIES_TODAY</p>
+          </div>
+
+          <div className="bg-black border border-green-500 p-6 terminal-glow">
+            <div className="flex items-center justify-between mb-4">
+              <Clock className="w-8 h-8 text-green-400" />
+              <span className="text-xs text-green-700 font-mono border border-green-700 px-2 py-1">PEAK: 2-4PM</span>
+            </div>
+            <h3 className="text-3xl font-bold mb-1 terminal-text">6.2h</h3>
+            <p className="text-green-400 font-mono text-sm">ACTIVE_TIME</p>
+          </div>
+
+          <div className="bg-black border border-green-500 p-6 terminal-glow">
+            <div className="flex items-center justify-between mb-4">
+              <Activity className="w-8 h-8 text-green-400" />
+              <span className="text-xs text-green-400 font-mono border border-green-400 px-2 py-1">+12%</span>
+            </div>
+            <h3 className="text-3xl font-bold mb-1 terminal-text">1,547</h3>
+            <p className="text-green-400 font-mono text-sm">THIS_WEEK</p>
           </div>
         </div>
 
         {/* Activity Timeline */}
-        <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
-          <h2 className="text-2xl font-bold mb-6">Recent Activity</h2>
+        <div className="bg-black border border-green-500 p-6 terminal-glow">
+          <h2 className="text-2xl font-bold mb-6 terminal-text font-mono">&gt;&gt; RECENT_ACTIVITY_LOG</h2>
           
           <div className="space-y-4">
             {activities.map((activity) => (
-              <div key={activity.id} className="flex items-start space-x-4 p-4 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-colors">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                  activity.type === 'clipboard' ? 'bg-cyan-500/20 text-cyan-400' :
-                  activity.type === 'terminal' ? 'bg-purple-500/20 text-purple-400' :
-                  'bg-blue-500/20 text-blue-400'
+              <div key={activity.id} className="flex items-start space-x-4 p-4 bg-black border border-green-700 hover:border-green-400 transition-colors">
+                <div className={`w-10 h-10 border flex items-center justify-center ${
+                  activity.type === 'clipboard' ? 'border-green-400 text-green-400' :
+                  activity.type === 'terminal' ? 'border-green-400 text-green-400' :
+                  'border-green-400 text-green-400'
                 }`}>
                   {activity.type === 'clipboard' ? '📋' :
                    activity.type === 'terminal' ? '⌨️' : '🌐'}
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-slate-300">{activity.desc}</p>
-                  <p className="text-xs text-slate-500 mt-1">{formatTime(activity.time)}</p>
+                  <p className="text-sm terminal-text font-mono">{activity.desc}</p>
+                  <p className="text-xs text-green-700 mt-1 font-mono">[{formatTime(activity.time)}]</p>
                 </div>
               </div>
             ))}
@@ -96,10 +102,17 @@ export default function DashboardPage() {
 
           {activities.length === 0 && (
             <div className="text-center py-12">
-              <Activity className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-              <p className="text-slate-400">No recent activity</p>
+              <Activity className="w-16 h-16 text-green-700 mx-auto mb-4" />
+              <p className="text-green-400 font-mono">[!] NO_RECENT_ACTIVITY</p>
             </div>
           )}
+        </div>
+
+        {/* Footer */}
+        <div className="mt-6 text-center">
+          <p className="text-green-700 text-sm font-mono">
+            [SYSTEM_MESSAGE] Activity monitoring active | Data encrypted
+          </p>
         </div>
       </div>
     </div>
